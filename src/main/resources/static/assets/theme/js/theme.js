@@ -19,9 +19,6 @@
     initAjaxUploader();
   });
 
-
-
-
   //Run function When PACE (page loader) hide
   Pace.on('hide', function() {
     $('.wrapper').css('visibility', 'visible').animate({opacity: 1.0}, 2000, function() {
@@ -41,6 +38,7 @@
   // ajax contact form
   function initAjaxContactForm() {
     if ($('#contactForm, #hireForm').length > 0) {
+
       $('#contactForm, #hireForm').validate();
       $('#contactForm, #hireForm').submit(function() {
         var el = $(this);
@@ -77,72 +75,72 @@
   function initAjaxUploader() {
     if ($('#upload-btn').length > 0) {
 
-    var btn = document.getElementById('upload-btn'),
-            wrap = document.getElementById('pic-progress-wrap'),
-            picBox = document.getElementById('picbox'),
-            errBox = document.getElementById('errormsg');
+      var btn = document.getElementById('upload-btn'),
+              wrap = document.getElementById('pic-progress-wrap'),
+              picBox = document.getElementById('picbox'),
+              errBox = document.getElementById('errormsg');
 
-    var uploader = new ss.SimpleUpload({
-      button: btn,
-      url: 'php/upload.php',
-      progressUrl: 'assets/plugins/Simple-Ajax-Uploader/extras/uploadProgress.php',
-      name: 'fileatt',
-      multiple: false,
-      maxUploads: 2,
-      maxSize: 200,
-      queue: false,
-      allowedExtensions: ['pdf'],
-      debug: true,       hoverClass: 'btn-hover',
-      focusClass: 'active',
-      disabledClass: 'disabled',
-      responseType: 'json',
-      onSubmit: function(filename, ext) {
-        var prog = document.createElement('div'),
-                outer = document.createElement('div'),
-                bar = document.createElement('div'),
-                size = document.createElement('div'),
-                self = this; 
-        prog.className = 'prog';
-        size.className = 'size';
-        outer.className = 'progress';
-        bar.className = 'bar';
+      var uploader = new ss.SimpleUpload({
+        button: btn,
+        url: 'php/upload.php',
+        progressUrl: 'assets/plugins/Simple-Ajax-Uploader/extras/uploadProgress.php',
+        name: 'fileatt',
+        multiple: false,
+        maxUploads: 2,
+        maxSize: 200,
+        queue: false,
+        allowedExtensions: ['pdf'],
+        debug: true, hoverClass: 'btn-hover',
+        focusClass: 'active',
+        disabledClass: 'disabled',
+        responseType: 'json',
+        onSubmit: function(filename, ext) {
+          var prog = document.createElement('div'),
+                  outer = document.createElement('div'),
+                  bar = document.createElement('div'),
+                  size = document.createElement('div'),
+                  self = this;
+          prog.className = 'prog';
+          size.className = 'size';
+          outer.className = 'progress';
+          bar.className = 'bar';
 
-        outer.appendChild(bar);
-        prog.appendChild(size);
-        prog.appendChild(outer);
-        wrap.appendChild(prog); // 'wrap' is an element on the page
+          outer.appendChild(bar);
+          prog.appendChild(size);
+          prog.appendChild(outer);
+          wrap.appendChild(prog); // 'wrap' is an element on the page
 
-        self.setProgressBar(bar);
-        self.setProgressContainer(prog);
-        self.setFileSizeBox(size);
+          self.setProgressBar(bar);
+          self.setProgressContainer(prog);
+          self.setFileSizeBox(size);
 
-        errBox.innerHTML = ''; 
-      },
-      onSizeError: function(filename, fileSize) {
-        errBox.innerHTML = 'Max size 200K';
-      },
-      onExtError: function(filename, extension) {
-        errBox.innerHTML = "File extension not permitted";
-      },
-      onError: function(filename, errorType, status, statusText, response, uploadBtn) {
-        errBox.innerHTML = statusText;
-      },
-      onComplete: function(file, response) {
-        if (!response) {
-          errBox.innerHTML = 'Unable to upload file';
-        }
-        if (response.success === true) {
-          picBox.innerHTML = '<i class="fa fa-file-pdf-o"></i> &nbsp;' + response.file;
-          $('#file-att').val(response.file);
-        } else {
-          if (response.msg) {
-            errBox.innerHTML = response.msg;
-          } else {
+          errBox.innerHTML = '';
+        },
+        onSizeError: function(filename, fileSize) {
+          errBox.innerHTML = 'Max size 200K';
+        },
+        onExtError: function(filename, extension) {
+          errBox.innerHTML = "File extension not permitted";
+        },
+        onError: function(filename, errorType, status, statusText, response, uploadBtn) {
+          errBox.innerHTML = statusText;
+        },
+        onComplete: function(file, response) {
+          if (!response) {
             errBox.innerHTML = 'Unable to upload file';
           }
+          if (response.success === true) {
+            picBox.innerHTML = '<i class="fa fa-file-pdf-o"></i> &nbsp;' + response.file;
+            $('#file-att').val(response.file);
+          } else {
+            if (response.msg) {
+              errBox.innerHTML = response.msg;
+            } else {
+              errBox.innerHTML = 'Unable to upload file';
+            }
+          }
         }
-      }
-    });
+      });
     }
   }
 
@@ -166,7 +164,7 @@
   //Typed Animation
   function initTyped() {
     $("#typed").typed({
-      strings: ["A Learner", "An Explorer"],
+      strings: ["A Learner", "An Explorer", "A Marketer", "A Developer"],
       // typing speed
       typeSpeed: 300,
       // time before typing starts
@@ -236,9 +234,7 @@
   function initEasyChart() {
     $('.chart').easyPieChart({
       easing: 'easeOutBounce',
-      barColor: '#1e1e1e',
-      trackColor: '#323232',
-      scaleColor: '#fff',
+      barColor: '#000',
       onStep: function(from, to, percent) {
         $(this.el).find('.percent').text(Math.round(percent));
       }
