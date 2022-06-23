@@ -10,4 +10,9 @@ public class PageController {
     public String index(Model model){
         return "index";
     }
+
+    @GetMapping(value="/project")
+    public String project(Model model){
+        return "blog-list";
+    }
 }
