@@ -41,4 +41,9 @@ public class PageController {
     public String projectPhileo(Model model){
         return "Phileo-detail";
     }
+
+    @GetMapping(value="/Digit")
+    public String projectDigit(Model model){
+        return "Digit-detail";
+    }
 }
