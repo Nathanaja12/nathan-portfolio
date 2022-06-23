@@ -15,13 +15,7 @@ public class PageController {
     public String project(Model model){
         return "blog-list";
     }
-
-    @GetMapping(value="/project/detail")
-    public String projectDetail(Model model){
-        return "blog-detail";
-    }
-
-
+    
     @GetMapping(value="/Tract")
     public String projectTract(Model model){
         return "Tract-detail";
