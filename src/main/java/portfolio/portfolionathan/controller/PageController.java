@@ -16,22 +16,28 @@ public class PageController {
         return "blog-list";
     }
 
-    @GetMapping(value="/project/Tract")
+    @GetMapping(value="/project/detail")
+    public String projectDetail(Model model){
+        return "blog-detail";
+    }
+
+
+    @GetMapping(value="/Tract")
     public String projectTract(Model model){
         return "Tract-detail";
     }
 
-    @GetMapping(value="project/Beelingual")
+    @GetMapping(value="/Beelingual")
     public String projectBeelingual(Model model){
         return "Beelingual-detail";
     }
 
-    @GetMapping(value="/project/Badr")
+    @GetMapping(value="/Badr")
     public String projectBadr(Model model){
         return "Badr-detail";
     }
 
-    @GetMapping(value="/project/Phileo")
+    @GetMapping(value="/Phileo")
     public String projectPhileo(Model model){
         return "Phileo-detail";
     }
